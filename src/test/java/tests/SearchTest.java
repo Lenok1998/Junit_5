@@ -25,7 +25,7 @@ public class SearchTest {
     }
 
     @ValueSource(strings = {
-            "React", "Vue", "Node.js"
+            "Selenide", "Junit 5", "Allure"
     })
     @ParameterizedTest(name="Поисковый запрос {0} не должен отдавать пустой список результатов")
     @Tag("BLOCKER")
@@ -36,8 +36,8 @@ public class SearchTest {
     }
 
     @CsvSource(value = {
-            "React, https://react.dev/",
-            "Vue, https://vuejs.org/"
+            "Selenide, https://ru.selenide.org//",
+            "Junit 5, https://junit.org/junit5/"
     })
     @ParameterizedTest(name="Для поискового запроса {0},в первом ответе должна быть ссылка{1}")
     @Tag("BLOCKER")

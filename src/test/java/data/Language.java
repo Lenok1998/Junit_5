@@ -1,8 +1,8 @@
 package data;
 
 public enum Language {
-    REACT("REACT"),
-    VUE("VUE");
+    SELENIDE("SELENIDE"),
+    JUNIT5("JUNIT5");
     public final String description;
 
     Language(String description){
