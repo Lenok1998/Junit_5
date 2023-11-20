@@ -29,7 +29,7 @@ public class SearchTest {
     })
     @ParameterizedTest(name="Поисковый запрос {0} не должен отдавать пустой список результатов")
     @Tag("BLOCKER")
-    void searchResultsShouldNotBeEmpty(String searchQuery){
+    void searchResultsShouldNotBeEmptyTest(String searchQuery){
         $("#q").setValue(searchQuery).pressEnter();
         $$("[class='w-gl__result__main']")
                 .shouldBe(sizeGreaterThan(0));
@@ -41,7 +41,7 @@ public class SearchTest {
     })
     @ParameterizedTest(name="Для поискового запроса {0},в первом ответе должна быть ссылка{1}")
     @Tag("BLOCKER")
-    void searchResultsShouldContainExpectedUrl(String searchQuery, String expectedLink){
+    void searchResultsShouldContainExpectedUrlTest(String searchQuery, String expectedLink){
         $("#q").setValue(searchQuery).pressEnter();
         $("[class='w-gl__result-url result-link']")
                 .shouldHave(text(expectedLink));
@@ -50,7 +50,7 @@ public class SearchTest {
     @Tag("BLOCKER")
     @EnumSource(Language.class)
     @ParameterizedTest (name="Проверка, что поисковая строка не пустая")
-    void successfulSearchTwo(Language language){
+    void successfulSearchTwoTest(Language language){
         System.out.println(language.description);
         $("#q").setValue(language.description).pressEnter();
         $("#q").shouldHave(text(language.description));
