@@ -52,15 +52,15 @@ public class SearchTest extends TestBase {
                 .shouldHave(text(expectedLink));
     }
 
- @Disabled("RBBO-911")
-    @Tag("BLOCKER")
+ 
+    @Tag("REGRESSION")
     @Tag("WEB")
     @EnumSource(Language.class)
     @ParameterizedTest (name="Проверка, что поисковая строка не пустая")
     void successfulSearchTwoTest(Language language){
         System.out.println(language.description);
         $("#q").setValue(language.description).pressEnter();
-        $("#q").shouldHave(text(language.description));
+        $("[class='w-gl__result__main']").shouldHave(text(language.description));
     }
 
 }
