@@ -40,7 +40,7 @@ public class SearchTest extends TestBase {
 
     @CsvSource(value = {
             "React, https://react.dev/",
-            "VUE, https://vuejs.org/",
+            "Vue, https://vuejs.org/",
             "Node.js, https://nodejs.org/en"
     })
     @ParameterizedTest(name="Для поискового запроса {0},в первом ответе должна быть ссылка{1}")
@@ -54,9 +54,11 @@ public class SearchTest extends TestBase {
 
 
 
-    @EnumSource(Language.class)
+
     @Disabled("RBBO-911")
     @Tag("BLOCKER")
+    @Tag("WEB")
+    @EnumSource(Language.class)
     @ParameterizedTest (name="Проверка, что поисковая строка не пустая")
     void successfulSearchTwoTest(Language language){
         System.out.println(language.description);
