@@ -52,10 +52,7 @@ public class SearchTest extends TestBase {
                 .shouldHave(text(expectedLink));
     }
 
-
-
-
-    @Disabled("RBBO-911")
+ @Disabled("RBBO-911")
     @Tag("BLOCKER")
     @Tag("WEB")
     @EnumSource(Language.class)
