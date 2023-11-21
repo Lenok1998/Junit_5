@@ -2,12 +2,14 @@ package tests;
 
 import data.Language;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -15,7 +17,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 @DisplayName("Домашнее задание по Junit5")
-public class SearchTest {
+public class SearchTest extends TestBase {
 
     @BeforeEach
     void setUp()
@@ -25,10 +27,11 @@ public class SearchTest {
     }
 
     @ValueSource(strings = {
-            "Selenide", "Junit 5", "Allure"
+            "React", "Vue", "Node.js"
     })
     @ParameterizedTest(name="Поисковый запрос {0} не должен отдавать пустой список результатов")
-    @Tag("BLOCKER")
+    @Tag("SMOKE")
+    @Tag("MOBILE")
     void searchResultsShouldNotBeEmptyTest(String searchQuery){
         $("#q").setValue(searchQuery).pressEnter();
         $$("[class='w-gl__result__main']")
@@ -36,19 +39,24 @@ public class SearchTest {
     }
 
     @CsvSource(value = {
-            "Selenide, https://ru.selenide.org//",
-            "Junit 5, https://junit.org/junit5/"
+            "React, https://react.dev/",
+            "VUE, https://vuejs.org/",
+            "Node.js, https://nodejs.org/en"
     })
     @ParameterizedTest(name="Для поискового запроса {0},в первом ответе должна быть ссылка{1}")
-    @Tag("BLOCKER")
+    @Tag("WEB")
+    @Tag("Regression")
     void searchResultsShouldContainExpectedUrlTest(String searchQuery, String expectedLink){
         $("#q").setValue(searchQuery).pressEnter();
         $("[class='w-gl__result-url result-link']")
                 .shouldHave(text(expectedLink));
     }
 
-    @Tag("BLOCKER")
+
+
     @EnumSource(Language.class)
+    @Disabled("RBBO-911")
+    @Tag("BLOCKER")
     @ParameterizedTest (name="Проверка, что поисковая строка не пустая")
     void successfulSearchTwoTest(Language language){
         System.out.println(language.description);
