@@ -59,7 +59,7 @@ public class SearchTest extends TestBase {
     @ParameterizedTest (name="Проверка, что поисковая строка не пустая")
     void successfulSearchTwoTest(Language language){
         System.out.println(language.description);
-        $("#q").setValue(language.description).pressEnter();
+        $("[class='w-gl__result__main']"").setValue(language.description).pressEnter();
         $("[class='w-gl__result__main']").shouldHave(text(language.description));
     }
 
